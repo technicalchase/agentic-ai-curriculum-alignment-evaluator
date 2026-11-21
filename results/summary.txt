@@ -1,0 +1,44 @@
+========================================================================
+SPRINT ONE POC — BENCHMARK RESULTS SUMMARY
+Agentic AI Curriculum Alignment Evaluator
+========================================================================
+
+ACCEPTANCE CRITERIA
+----------------------------------------
+Single-profile alignment accuracy  (N=20): 20/20 = 100.0%  [target ≥80%]  ✓ PASS
+Paired attribution accuracy        (N=10): 10/10 = 100.0%  [target ≥80%]  ✓ PASS
+Cross-profile difference found            :                              ✓ PASS
+All citations valid                        :                              ✓ PASS
+
+NEGATIVE CONTROL PERFORMANCE
+----------------------------------------
+  EE_S01: UMass ✓ (got Misaligned, expected Misaligned)  |  Japan ✓ (got Misaligned, expected Misaligned)
+  EE_S02: UMass ✓ (got Aligned, expected Aligned)  |  Japan ✓ (got Aligned, expected Aligned)
+  EE_S06: UMass ✓ (got Misaligned, expected Misaligned)  |  Japan ✓ (got Misaligned, expected Misaligned)
+  EE_S08: UMass ✓ (got Aligned, expected Aligned)  |  Japan ✓ (got Aligned, expected Aligned)
+  EE_S09: UMass ✓ (got Aligned, expected Aligned)  |  Japan ✓ (got Aligned, expected Aligned)
+
+PER-SCENARIO DETAIL
+------------------------------------------------------------------------
+Scenario   UMass Got                  Japan Got                  Attribution                            SP✓
+------------------------------------------------------------------------
+EE_S01     Misaligned ✓               Misaligned ✓               Consistent_With_Design_Limitation ✓    [NEG CTRL]
+EE_S02     Aligned ✓                  Aligned ✓                  Consistent_With_Design_Limitation ✓    [NEG CTRL]
+EE_S03     Aligned ✓                  Misaligned ✓               Consistent_With_Contextual_Assumption ✓
+EE_S04     Misaligned ✓               Aligned ✓                  Consistent_With_Contextual_Assumption ✓
+EE_S05     Aligned ✓                  Misaligned ✓               Consistent_With_Contextual_Assumption ✓
+EE_S06     Misaligned ✓               Misaligned ✓               Consistent_With_Design_Limitation ✓    [NEG CTRL]
+EE_S07     Aligned ✓                  Misaligned ✓               Consistent_With_Contextual_Assumption ✓
+EE_S08     Aligned ✓                  Aligned ✓                  Consistent_With_Design_Limitation ✓    [NEG CTRL]
+EE_S09     Aligned ✓                  Aligned ✓                  Consistent_With_Design_Limitation ✓    [NEG CTRL]
+EE_S10     Misaligned ✓               Aligned ✓                  Consistent_With_Contextual_Assumption ✓
+
+ERROR ANALYSIS
+----------------------------------------
+Single-profile misclassifications: none
+Paired attribution misclassifications: none
+Insufficient_Information outcomes: none
+
+========================================================================
+END OF REPORT
+========================================================================

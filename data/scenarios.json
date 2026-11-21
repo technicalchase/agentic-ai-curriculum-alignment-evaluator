@@ -1,0 +1,102 @@
+[
+  {
+    "scenario_id": "EE_S01",
+    "student_attempt": "(aa|bb|(ab|ba)(aa|bb)*(ab|ba))*",
+    "ai_feedback_text": "Your regular expression is incorrect. The correct answer is ((aa)(bb)|(bb)(aa))* which captures even pairs. You should review the definition of even-even strings.",
+    "expected_umass_alignment": "Misaligned",
+    "expected_japan_alignment": "Misaligned",
+    "expected_attribution": "Consistent_With_Design_Limitation",
+    "is_negative_control": true,
+    "_notes": "Negative control: the AI feedback contains a factually wrong 'correct answer'. Both profiles should flag misalignment because the feedback is incorrect regardless of curriculum context. This tests whether the evaluator catches a design-level error that cannot be explained by curriculum differences."
+  },
+  {
+    "scenario_id": "EE_S02",
+    "student_attempt": "(aa|bb|(ab|ba)(aa|bb)*(ab|ba))*",
+    "ai_feedback_text": "Your regular expression is correct. It tracks parity using concatenation and union. Well done — this directly matches the language of strings with an even number of both a's and b's.",
+    "expected_umass_alignment": "Aligned",
+    "expected_japan_alignment": "Aligned",
+    "expected_attribution": "Consistent_With_Design_Limitation",
+    "is_negative_control": true,
+    "_notes": "Negative control: the student's answer is correct and the feedback confirms it accurately. Both profiles should return Aligned. No cross-profile difference expected — alignment is content-driven, not curriculum-driven."
+  },
+  {
+    "scenario_id": "EE_S03",
+    "student_attempt": "(a*b*)*",
+    "ai_feedback_text": "Your expression accepts all strings over {a,b}, not just those with an even number of each symbol. To fix this, consider how finite automata track parity states. Draw the 4-state DFA for the EE language and derive the regular expression from its states using the state-elimination method.",
+    "expected_umass_alignment": "Aligned",
+    "expected_japan_alignment": "Misaligned",
+    "expected_attribution": "Consistent_With_Contextual_Assumption",
+    "is_negative_control": false,
+    "_notes": "Cross-profile difference case: feedback is aligned at UMass (DFA and state-elimination are in-scope prerequisites). It misaligns at the Japan profile because DFA concepts are explicitly out-of-scope at that course stage (japan_SR03, japan_SR04). Same feedback, different curriculum alignment."
+  },
+  {
+    "scenario_id": "EE_S04",
+    "student_attempt": "(aa|bb)*",
+    "ai_feedback_text": "Your expression only accepts strings made entirely of 'aa' or 'bb' blocks. It rejects strings like 'abba' which also has an even number of each symbol. You need to also account for strings where a's and b's are interspersed. Try adding a case for 'ab' and 'ba' patterns. Good effort — you have the right idea about using concatenation.",
+    "expected_umass_alignment": "Misaligned",
+    "expected_japan_alignment": "Aligned",
+    "expected_attribution": "Consistent_With_Contextual_Assumption",
+    "is_negative_control": false,
+    "_notes": "Cross-profile difference: the feedback provides a helpful hint using plain language and encouragement (aligns with japan_SCN02, japan_SCN03, japan_CLO02 — verification-based approach). At UMass the feedback is misaligned because it only hints without requiring a formal justification (violates umass_SR02, umass_SR04 — proof-level expectations)."
+  },
+  {
+    "scenario_id": "EE_S05",
+    "student_attempt": "((aa)|(bb)|(ab)(aa|bb)*(ba)|(ba)(aa|bb)*(ab))*",
+    "ai_feedback_text": "Your answer is almost correct but contains a precedence error. The subexpression (ab)(aa|bb)*(ba) should be wrapped in an outer group: ((ab)(aa|bb)*(ba)) to avoid unintended parsing. Also, you need to prove that this expression generates exactly the EE language — provide a formal inductive argument.",
+    "expected_umass_alignment": "Aligned",
+    "expected_japan_alignment": "Misaligned",
+    "expected_attribution": "Consistent_With_Contextual_Assumption",
+    "is_negative_control": false,
+    "_notes": "Cross-profile difference: demanding a formal inductive proof (umass_SR02, umass_SR04) is well-aligned at UMass. At the Japan profile formal proofs are not required at this stage (japan_SR02, japan_SR03); the feedback therefore exceeds the course's expectations and misleads the student about what is required."
+  },
+  {
+    "scenario_id": "EE_S06",
+    "student_attempt": "(a|b)*",
+    "ai_feedback_text": "Your expression (a|b)* accepts every string over {a,b}. This is wrong. The answer is correct.",
+    "expected_umass_alignment": "Misaligned",
+    "expected_japan_alignment": "Misaligned",
+    "expected_attribution": "Consistent_With_Design_Limitation",
+    "is_negative_control": true,
+    "_notes": "Negative control: the feedback is self-contradictory — it correctly identifies the error then claims the answer is correct. Both profiles flag misalignment because this is a logical failure of the AI system regardless of curriculum. Design-level limitation."
+  },
+  {
+    "scenario_id": "EE_S07",
+    "student_attempt": "(aa|bb|(ab|ba)(aa|bb)*(ab|ba))*",
+    "ai_feedback_text": "Your answer is correct. Notice that this is equivalent to the language recognised by the 4-state DFA where states represent the parity of counts of a's and b's modulo 2. The accepting state is (even, even). This connection reinforces Course Learning Outcome 1 and helps you see the regularity of the language formally.",
+    "expected_umass_alignment": "Aligned",
+    "expected_japan_alignment": "Misaligned",
+    "expected_attribution": "Consistent_With_Contextual_Assumption",
+    "is_negative_control": false,
+    "_notes": "Cross-profile difference: the student is correct and the DFA explanation is enriching at UMass where automata are prerequisites (umass_SR05, umass_CLO01). At Japan the reference to DFA states is out-of-scope and potentially confusing (japan_SR03, japan_SR04)."
+  },
+  {
+    "scenario_id": "EE_S08",
+    "student_attempt": "(aa|b*ab*a)*b*",
+    "ai_feedback_text": "Your expression does not correctly capture the even-b's constraint. The pattern b*ab*a counts pairs of a's but allows any number of b's. Consider how to independently enforce even parity for a's and for b's. Hint: think about what strings with zero b's your expression accepts.",
+    "expected_umass_alignment": "Aligned",
+    "expected_japan_alignment": "Aligned",
+    "expected_attribution": "Consistent_With_Design_Limitation",
+    "is_negative_control": true,
+    "_notes": "Negative control: feedback correctly identifies the error and gives a useful hint without requiring a proof. Both profiles should find this aligned — it correctly diagnoses the mistake (structural feedback, umass_SR07; verification hint, japan_CLO02) and respects both curricula's expectations. No profile difference expected."
+  },
+  {
+    "scenario_id": "EE_S09",
+    "student_attempt": "(aa|bb)*|(ab|ba)(aa|bb)*(ab|ba)",
+    "ai_feedback_text": "Your expression is close but uses union at the top level, which means it accepts strings from either branch but not necessarily their combination. For example, 'aabb' should be accepted but may fall outside both branches depending on how your parser processes the top-level union. You need to rethink the structure so both parity conditions are enforced simultaneously. As a next step, verify your expression against the string 'abba'.",
+    "expected_umass_alignment": "Aligned",
+    "expected_japan_alignment": "Aligned",
+    "expected_attribution": "Consistent_With_Design_Limitation",
+    "is_negative_control": true,
+    "_notes": "Negative control: feedback is technically accurate about the structural problem and provides a concrete test string, satisfying both profiles. UMass: addresses operator precedence (umass_SR03, umass_SR07). Japan: provides a verification example (japan_CLO02, japan_SR05). No curriculum-driven difference expected."
+  },
+  {
+    "scenario_id": "EE_S10",
+    "student_attempt": "((aa)|(bb)|(ab|ba)((aa)|(bb))*(ab|ba))*",
+    "ai_feedback_text": "Your regular expression is correct. Great work. You successfully constructed the EE language. This completes the assignment.",
+    "expected_umass_alignment": "Misaligned",
+    "expected_japan_alignment": "Aligned",
+    "expected_attribution": "Consistent_With_Contextual_Assumption",
+    "is_negative_control": false,
+    "_notes": "Cross-profile difference: the student's answer is correct. The Japan profile is satisfied — the construction is verified correct (japan_CLO01, japan_CLO02) and the brief confirmatory feedback respects the communication norms. UMass requires a proof of correctness (umass_SR02, umass_SR04): confirming correctness without a justification argument is misaligned with COMPSCI 250's proof expectations."
+  }
+]

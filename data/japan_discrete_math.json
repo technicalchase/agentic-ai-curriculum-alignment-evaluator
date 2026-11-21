@@ -1,0 +1,57 @@
+{
+  "profile_id": "japan_discrete_math",
+  "institution_name": "Hypothetical Japanese University — Discrete Mathematics for Computer Science (Synthetic Profile, Fictional)",
+  "bloom_baseline_level": "Understand",
+  "structural_rules": [
+    {
+      "rule_id": "japan_SR01",
+      "text": "Students must construct a regular expression that recognizes strings over {a,b} with an even number of a's and an even number of b's."
+    },
+    {
+      "rule_id": "japan_SR02",
+      "text": "Correctness is demonstrated primarily through examples and verification against a provided acceptance table; a full formal proof is not required at this course level."
+    },
+    {
+      "rule_id": "japan_SR03",
+      "text": "Prerequisite knowledge is limited to set notation and basic string operations; finite automata are introduced later in the course sequence and are not assumed at the time of the EE exercise."
+    },
+    {
+      "rule_id": "japan_SR04",
+      "text": "AI feedback must be calibrated to the prerequisite level: references to DFA transitions or formal language equivalence theorems are considered out-of-scope for this exercise."
+    },
+    {
+      "rule_id": "japan_SR05",
+      "text": "Feedback should explicitly distinguish between syntactic errors (malformed regex) and semantic errors (correct syntax, wrong language) because students at this level often conflate the two."
+    },
+    {
+      "rule_id": "japan_SR06",
+      "text": "The course emphasises pattern recognition and verification over proof construction at the introductory stage."
+    },
+    {
+      "rule_id": "japan_CLO01",
+      "text": "Course Learning Outcome 1: Students can apply basic regular expression syntax to describe simple string patterns."
+    },
+    {
+      "rule_id": "japan_CLO02",
+      "text": "Course Learning Outcome 2: Students can verify a proposed regular expression by testing against a finite set of example strings."
+    },
+    {
+      "rule_id": "japan_CLO03",
+      "text": "Course Learning Outcome 3: Students can identify whether a given string belongs to a described language using enumeration, not formal proof."
+    }
+  ],
+  "socio_communicative_norms": [
+    {
+      "rule_id": "japan_SCN01",
+      "text": "Feedback is typically delivered with explicit step-by-step guidance; students are expected to follow structured walkthroughs rather than derive corrections independently."
+    },
+    {
+      "rule_id": "japan_SCN02",
+      "text": "Positive framing is prioritised; feedback phrases errors as areas for improvement rather than outright mistakes."
+    },
+    {
+      "rule_id": "japan_SCN03",
+      "text": "Technical precision is maintained, but formal notation is introduced gradually with plain-language paraphrases alongside each formula."
+    }
+  ]
+}

@@ -1,0 +1,406 @@
+{
+  "paired_results": [
+    {
+      "scenario_id": "EE_S01",
+      "umass_result": {
+        "scenario_id": "EE_S01",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback confirms correctness without requiring or providing a formal proof of correctness. COMPSCI 250 requires explicit justification (umass_SR02, umass_SR04).",
+            "cited_ids": [
+              "EE_S01",
+              "umass_SR02",
+              "umass_SR04"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S01",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback incorrectly marks the student's correct answer as wrong. This is a factual error in the AI feedback and represents a design limitation regardless of curriculum context (japan_CLO01, japan_SR01).",
+            "cited_ids": [
+              "EE_S01",
+              "japan_CLO01",
+              "japan_SR01"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Design_Limitation",
+      "paired_rationale": "The feedback is misaligned under both institutional profiles. Because the misalignment is consistent regardless of curriculum context, this pattern is consistent with a system design limitation rather than a curriculum-specific contextual assumption. The feedback problem does not depend on which institution's rules are applied."
+    },
+    {
+      "scenario_id": "EE_S02",
+      "umass_result": {
+        "scenario_id": "EE_S02",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback confirms the correct answer and provides supporting explanation, satisfying the COMPSCI 250 proof and justification requirements (umass_SR02, umass_CLO01).",
+            "cited_ids": [
+              "EE_S02",
+              "umass_SR02",
+              "umass_CLO01"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S02",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback correctly confirms the student's answer. Brief confirmatory feedback is appropriate at this course level (japan_CLO01, japan_CLO02).",
+            "cited_ids": [
+              "EE_S02",
+              "japan_CLO01",
+              "japan_CLO02"
+            ]
+          },
+          {
+            "claim_text": "The feedback confirms correctness and provides an explanation that stays within scope, supporting course learning outcomes (japan_CLO01, japan_SR06).",
+            "cited_ids": [
+              "EE_S02",
+              "japan_CLO01",
+              "japan_SR06"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Design_Limitation",
+      "paired_rationale": "The feedback is aligned under both institutional profiles. Because the feedback succeeds regardless of curriculum context, its quality is consistent with a curriculum-independent (design-level) property rather than a contextual assumption. No curriculum-specific gap was identified."
+    },
+    {
+      "scenario_id": "EE_S03",
+      "umass_result": {
+        "scenario_id": "EE_S03",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback correctly identifies the error and invokes formal reasoning or DFA concepts consistent with COMPSCI 250 prerequisites (umass_SR03, umass_SR05, umass_CLO02).",
+            "cited_ids": [
+              "EE_S03",
+              "umass_SR03",
+              "umass_SR05",
+              "umass_CLO02"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S03",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback references DFA or finite automata concepts that are explicitly out-of-scope for this course stage (japan_SR03, japan_SR04). This may confuse students who have not yet encountered automata theory.",
+            "cited_ids": [
+              "EE_S03",
+              "japan_SR03",
+              "japan_SR04"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Contextual_Assumption",
+      "paired_rationale": "The feedback is aligned under the UMass COMPSCI 250 profile but misaligned under the Japan Discrete Math profile. Because the same feedback produces different alignment outcomes depending on which institutional profile is applied, this pattern is consistent with a contextual assumption embedded in the feedback — an assumption that holds in one curriculum context but not the other. This is a possible explanation, not a confirmed cause."
+    },
+    {
+      "scenario_id": "EE_S04",
+      "umass_result": {
+        "scenario_id": "EE_S04",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback identifies that an error exists but provides only a vague hint without structural analysis of the flaw. COMPSCI 250 requires pinpointing the precise structural problem (umass_SR07, umass_SR02).",
+            "cited_ids": [
+              "EE_S04",
+              "umass_SR07",
+              "umass_SR02"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S04",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback identifies the error using accessible language consistent with the course-level expectations (japan_SR05, japan_CLO02).",
+            "cited_ids": [
+              "EE_S04",
+              "japan_SR05",
+              "japan_CLO02"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Contextual_Assumption",
+      "paired_rationale": "The feedback is aligned under the Japan Discrete Math profile but misaligned under the UMass COMPSCI 250 profile. Because the same feedback produces different alignment outcomes depending on which institutional profile is applied, this pattern is consistent with a contextual assumption embedded in the feedback — an assumption that holds in one curriculum context but not the other. This is a possible explanation, not a confirmed cause."
+    },
+    {
+      "scenario_id": "EE_S05",
+      "umass_result": {
+        "scenario_id": "EE_S05",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback confirms the correct answer and provides supporting explanation, satisfying the COMPSCI 250 proof and justification requirements (umass_SR02, umass_CLO01).",
+            "cited_ids": [
+              "EE_S05",
+              "umass_SR02",
+              "umass_CLO01"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S05",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback demands a formal inductive proof, which exceeds the course-level prerequisite expectations for this exercise (japan_SR02, japan_SR03).",
+            "cited_ids": [
+              "EE_S05",
+              "japan_SR02",
+              "japan_SR03"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Contextual_Assumption",
+      "paired_rationale": "The feedback is aligned under the UMass COMPSCI 250 profile but misaligned under the Japan Discrete Math profile. Because the same feedback produces different alignment outcomes depending on which institutional profile is applied, this pattern is consistent with a contextual assumption embedded in the feedback — an assumption that holds in one curriculum context but not the other. This is a possible explanation, not a confirmed cause."
+    },
+    {
+      "scenario_id": "EE_S06",
+      "umass_result": {
+        "scenario_id": "EE_S06",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback is self-contradictory: it identifies an error and then claims the answer is correct within the same response. This is a system-level failure independent of curriculum context.",
+            "cited_ids": [
+              "EE_S06"
+            ]
+          },
+          {
+            "claim_text": "The feedback identifies that an error exists but provides only a vague hint without structural analysis of the flaw. COMPSCI 250 requires pinpointing the precise structural problem (umass_SR07, umass_SR02).",
+            "cited_ids": [
+              "EE_S06",
+              "umass_SR07",
+              "umass_SR02"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S06",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback is self-contradictory: it identifies an error and then claims the answer is correct within the same response. This is a system-level failure independent of curriculum context.",
+            "cited_ids": [
+              "EE_S06"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Design_Limitation",
+      "paired_rationale": "The feedback is misaligned under both institutional profiles. Because the misalignment is consistent regardless of curriculum context, this pattern is consistent with a system design limitation rather than a curriculum-specific contextual assumption. The feedback problem does not depend on which institution's rules are applied."
+    },
+    {
+      "scenario_id": "EE_S07",
+      "umass_result": {
+        "scenario_id": "EE_S07",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback confirms the correct answer and provides supporting explanation, satisfying the COMPSCI 250 proof and justification requirements (umass_SR02, umass_CLO01).",
+            "cited_ids": [
+              "EE_S07",
+              "umass_SR02",
+              "umass_CLO01"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S07",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback references DFA or finite automata concepts that are explicitly out-of-scope for this course stage (japan_SR03, japan_SR04). This may confuse students who have not yet encountered automata theory.",
+            "cited_ids": [
+              "EE_S07",
+              "japan_SR03",
+              "japan_SR04"
+            ]
+          },
+          {
+            "claim_text": "The feedback demands a formal inductive proof, which exceeds the course-level prerequisite expectations for this exercise (japan_SR02, japan_SR03).",
+            "cited_ids": [
+              "EE_S07",
+              "japan_SR02",
+              "japan_SR03"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Contextual_Assumption",
+      "paired_rationale": "The feedback is aligned under the UMass COMPSCI 250 profile but misaligned under the Japan Discrete Math profile. Because the same feedback produces different alignment outcomes depending on which institutional profile is applied, this pattern is consistent with a contextual assumption embedded in the feedback — an assumption that holds in one curriculum context but not the other. This is a possible explanation, not a confirmed cause."
+    },
+    {
+      "scenario_id": "EE_S08",
+      "umass_result": {
+        "scenario_id": "EE_S08",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback identifies the error and provides a structural explanation of the flaw, satisfying the COMPSCI 250 requirement to pinpoint the precise problem (umass_SR07, umass_CLO03).",
+            "cited_ids": [
+              "EE_S08",
+              "umass_SR07",
+              "umass_CLO03"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S08",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback identifies the error using accessible language consistent with the course-level expectations (japan_SR05, japan_CLO02).",
+            "cited_ids": [
+              "EE_S08",
+              "japan_SR05",
+              "japan_CLO02"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Design_Limitation",
+      "paired_rationale": "The feedback is aligned under both institutional profiles. Because the feedback succeeds regardless of curriculum context, its quality is consistent with a curriculum-independent (design-level) property rather than a contextual assumption. No curriculum-specific gap was identified."
+    },
+    {
+      "scenario_id": "EE_S09",
+      "umass_result": {
+        "scenario_id": "EE_S09",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback identifies the error and provides a structural explanation of the flaw, satisfying the COMPSCI 250 requirement to pinpoint the precise problem (umass_SR07, umass_CLO03).",
+            "cited_ids": [
+              "EE_S09",
+              "umass_SR07",
+              "umass_CLO03"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S09",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback identifies the error using accessible language consistent with the course-level expectations (japan_SR05, japan_CLO02).",
+            "cited_ids": [
+              "EE_S09",
+              "japan_SR05",
+              "japan_CLO02"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Design_Limitation",
+      "paired_rationale": "The feedback is aligned under both institutional profiles. Because the feedback succeeds regardless of curriculum context, its quality is consistent with a curriculum-independent (design-level) property rather than a contextual assumption. No curriculum-specific gap was identified."
+    },
+    {
+      "scenario_id": "EE_S10",
+      "umass_result": {
+        "scenario_id": "EE_S10",
+        "profile_id": "umass_cs250",
+        "alignment_status": "Misaligned",
+        "claims": [
+          {
+            "claim_text": "The feedback confirms correctness without requiring or providing a formal proof of correctness. COMPSCI 250 requires explicit justification (umass_SR02, umass_SR04).",
+            "cited_ids": [
+              "EE_S10",
+              "umass_SR02",
+              "umass_SR04"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "japan_result": {
+        "scenario_id": "EE_S10",
+        "profile_id": "japan_discrete_math",
+        "alignment_status": "Aligned",
+        "claims": [
+          {
+            "claim_text": "The feedback correctly confirms the student's answer. Brief confirmatory feedback is appropriate at this course level (japan_CLO01, japan_CLO02).",
+            "cited_ids": [
+              "EE_S10",
+              "japan_CLO01",
+              "japan_CLO02"
+            ]
+          }
+        ],
+        "retry_count": 0
+      },
+      "paired_attribution_label": "Consistent_With_Contextual_Assumption",
+      "paired_rationale": "The feedback is aligned under the Japan Discrete Math profile but misaligned under the UMass COMPSCI 250 profile. Because the same feedback produces different alignment outcomes depending on which institutional profile is applied, this pattern is consistent with a contextual assumption embedded in the feedback — an assumption that holds in one curriculum context but not the other. This is a possible explanation, not a confirmed cause."
+    }
+  ],
+  "single_profile_correct": 20,
+  "single_profile_total": 20,
+  "single_profile_accuracy": 1.0,
+  "paired_attribution_correct": 10,
+  "paired_attribution_total": 10,
+  "paired_attribution_accuracy": 1.0,
+  "negative_control_summary": "  EE_S01: UMass ✓ (got Misaligned, expected Misaligned)  |  Japan ✓ (got Misaligned, expected Misaligned)\n  EE_S02: UMass ✓ (got Aligned, expected Aligned)  |  Japan ✓ (got Aligned, expected Aligned)\n  EE_S06: UMass ✓ (got Misaligned, expected Misaligned)  |  Japan ✓ (got Misaligned, expected Misaligned)\n  EE_S08: UMass ✓ (got Aligned, expected Aligned)  |  Japan ✓ (got Aligned, expected Aligned)\n  EE_S09: UMass ✓ (got Aligned, expected Aligned)  |  Japan ✓ (got Aligned, expected Aligned)",
+  "single_profile_target_met": true,
+  "paired_attribution_target_met": true,
+  "cross_profile_difference_found": true,
+  "all_citations_valid": true
+}

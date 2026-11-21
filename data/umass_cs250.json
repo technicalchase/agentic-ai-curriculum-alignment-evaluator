@@ -1,0 +1,61 @@
+{
+  "profile_id": "umass_cs250",
+  "institution_name": "University of Massachusetts Amherst — COMPSCI 250: Introduction to Computation (Synthetic Profile)",
+  "bloom_baseline_level": "Analyze",
+  "structural_rules": [
+    {
+      "rule_id": "umass_SR01",
+      "text": "Students must construct a regular expression that accepts exactly the strings over {a,b} with an even number of a's and an even number of b's (the 'even-even' or EE language)."
+    },
+    {
+      "rule_id": "umass_SR02",
+      "text": "A correct construction requires explicit justification: students must explain why the expression accepts all strings in the EE language and rejects all strings outside it (completeness and soundness)."
+    },
+    {
+      "rule_id": "umass_SR03",
+      "text": "Students are expected to demonstrate mastery of prerequisite concepts: concatenation, union, Kleene star, and their precedence rules as covered in COMPSCI 250."
+    },
+    {
+      "rule_id": "umass_SR04",
+      "text": "Proof justifications must reference the formal definition of the language, not merely provide examples or assert correctness without reasoning."
+    },
+    {
+      "rule_id": "umass_SR05",
+      "text": "Common prerequisite: Students should understand finite automata and their equivalence with regular expressions before attempting the EE construction."
+    },
+    {
+      "rule_id": "umass_SR06",
+      "text": "AI feedback must address the specific error type: a learning gap (concept never covered) is treated differently from a learning lapse (concept covered but misapplied)."
+    },
+    {
+      "rule_id": "umass_SR07",
+      "text": "Feedback on incorrect regular expressions must identify the precise structural flaw (e.g., missing parity tracking, incorrect operator precedence) rather than marking the answer wrong without explanation."
+    },
+    {
+      "rule_id": "umass_CLO01",
+      "text": "Course Learning Outcome 1: Students can formally define and manipulate regular languages using regular expressions and finite automata."
+    },
+    {
+      "rule_id": "umass_CLO02",
+      "text": "Course Learning Outcome 2: Students can construct proofs of correctness for formal language constructions using induction or structural arguments."
+    },
+    {
+      "rule_id": "umass_CLO03",
+      "text": "Course Learning Outcome 3: Students can identify and explain common error patterns in discrete mathematics problem-solving."
+    }
+  ],
+  "socio_communicative_norms": [
+    {
+      "rule_id": "umass_SCN01",
+      "text": "Feedback is typically direct and technically precise; students are expected to engage with formal notation and proofs without extensive scaffolding."
+    },
+    {
+      "rule_id": "umass_SCN02",
+      "text": "Feedback may include counter-examples or test strings to help students self-check their construction."
+    },
+    {
+      "rule_id": "umass_SCN03",
+      "text": "Encouraging language is used but subordinate to technical accuracy; praise for effort is secondary to correctness."
+    }
+  ]
+}
