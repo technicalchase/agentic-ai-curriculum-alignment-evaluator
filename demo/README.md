@@ -21,7 +21,68 @@ No API keys or internet access are required — the pipeline is fully determinis
 
 ---
 
-## Running the pipeline
+## Running the demo script
+
+From the **repository root**, run:
+
+```bash
+python demo/run_demo.py
+```
+
+The demo script shows three things in sequence:
+
+1. **Single-profile alignment evaluation** — evaluates scenario `EE_S05`
+   (student submits a near-correct regex; feedback demands a formal inductive
+   proof) against the UMass COMPSCI 250 profile and prints the alignment
+   result with supporting diagnostic claims.
+
+2. **Paired curriculum comparison** — evaluates scenario `EE_S03` against
+   both profiles, then runs the paired attribution to show that the *same*
+   feedback aligns with UMass (DFA is prerequisite knowledge) but misaligns
+   with the Japan profile (DFA is out-of-scope at that course stage).
+
+3. **Automated test suite** — runs `pytest tests/ -v` and reports results.
+
+Expected console output (abbreviated):
+
+```
+========================================================================
+  Curriculum Alignment Evaluator — Sprint One POC Demo
+  Agentic AI · IBM SkillsBuild · Deterministic Rule-Based Pipeline
+========================================================================
+
+========================================================================
+  DEMO 1 — Single Institutional Curriculum Alignment Evaluation
+========================================================================
+
+  Scenario      : EE_S05
+  Student attempt:
+      ((aa)|(bb)|(ab)(aa|bb)*(ba)|(ba)(aa|bb)*(ab))*
+  ...
+  Profile       : umass_cs250  (UMass COMPSCI 250)
+  Status        : Aligned  ✓ (expected: Aligned)
+  ...
+
+========================================================================
+  DEMO 2 — Paired Curriculum Comparison (UMass vs Japan)
+========================================================================
+  ...
+  Label    : Consistent_With_Contextual_Assumption  ✓
+  ...
+
+========================================================================
+  DEMO 3 — Automated Test Suite
+========================================================================
+
+  Running: python -m pytest tests/ -v
+
+  ... (38 tests) ...
+  ✓ All tests passed.
+```
+
+---
+
+## Running the full pipeline
 
 From the **repository root**, run:
 
@@ -227,7 +288,8 @@ expectations but violates the other's.
 │   └── summary.txt               # Human-readable report
 ├── docs/                         # Architecture, methodology, and data dictionary
 ├── demo/
-│   └── README.md                 # This walkthrough
+│   ├── README.md                 # This walkthrough
+│   └── run_demo.py               # Interactive demo script
 └── requirements.txt
 ```
 
