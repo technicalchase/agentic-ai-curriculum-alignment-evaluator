@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sprint 1 POC — Quality Assurance Audit</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 14px; line-height: 1.6;
+    color: #1f2328; background: #ffffff;
+    padding: 32px 16px 48px;
+  }
+  .wrapper { max-width: 760px; margin: 0 auto; }
+
+  h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  h2 { font-size: 15px; font-weight: 700; margin-top: 32px; margin-bottom: 10px;
+       padding-bottom: 4px; border-bottom: 2px solid #e5e7eb; color: #1f2328; }
+  h3 { font-size: 13px; font-weight: 700; margin-top: 18px; margin-bottom: 6px; color: #3b82d4; }
+  p  { margin-bottom: 8px; }
+  ul { margin: 6px 0 10px 20px; }
+  li { margin-bottom: 3px; }
+
+  .meta { font-size: 12px; color: #57606a; margin-bottom: 24px; }
+
+  /* summary badges */
+  .badge-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+  .badge { display: inline-block; padding: 5px 12px; border-radius: 4px;
+           font-size: 12px; font-weight: 600; }
+  .badge-pass  { background: #dcfce7; color: #166534; }
+  .badge-warn  { background: #fef9c3; color: #854d0e; }
+  .badge-info  { background: #dbeafe; color: #1e40af; }
+
+  /* tables */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 16px; }
+  th { background: #f7f8fa; text-align: left; padding: 6px 8px;
+       border-top: 1px solid #e5e7eb; border-bottom: 2px solid #e5e7eb;
+       font-weight: 700; white-space: nowrap; }
+  td { padding: 5px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .s-pass  { color: #166534; font-weight: 600; }
+  .s-warn  { color: #854d0e; font-weight: 600; }
+  .s-info  { color: #1e40af; font-weight: 600; }
+  .mono    { font-family: "Cascadia Code", "Consolas", monospace; font-size: 11.5px; }
+
+  /* finding blocks */
+  .finding { background: #f7f8fa; border-left: 3px solid #e5e7eb;
+             padding: 10px 14px; margin-bottom: 10px; border-radius: 2px; }
+  .finding.warn { border-left-color: #f59e0b; }
+  .finding.pass { border-left-color: #22c55e; }
+  .finding.info { border-left-color: #3b82d4; }
+  .finding strong { display: block; margin-bottom: 4px; font-size: 13px; }
+
+  .divider { border: none; border-top: 1px solid #e5e7eb; margin: 24px 0; }
+
+  footer { margin-top: 40px; padding-top: 12px; border-top: 1px solid #e5e7eb;
+           text-align: center; font-size: 11px; color: #57606a; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>Sprint 1 POC &#8212; Quality Assurance Audit</h1>
+  <p class="meta">
+    Agentic AI Curriculum Alignment Evaluator &nbsp;&middot;&nbsp;
+    Auditor: IBM Bob &nbsp;&middot;&nbsp; Date: 2026-11-21 &nbsp;&middot;&nbsp;
+    Specification: <em>IBM_SkillsBuild_Sprint_POC.docx</em> (Randall, 2026)
+  </p>
+
+  <div class="badge-row">
+    <span class="badge badge-pass">Overall: PASS</span>
+    <span class="badge badge-pass">All acceptance criteria met</span>
+    <span class="badge badge-pass">38/38 tests pass</span>
+    <span class="badge badge-pass">Fully reproducible</span>
+    <span class="badge badge-warn">3 Limitations noted</span>
+    <span class="badge badge-warn">1 Structural deviation noted</span>
+  </div>
+
+  <!-- ======================== SECTION 1 ======================== -->
+  <h2>1. Requirements Traceability Matrix</h2>
+  <p>Each row maps one requirement from the Technical Charter to its implementation location, available test evidence, and audit status.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Req&nbsp;ID</th>
+        <th>Requirement (Charter &sect;)</th>
+        <th>Implementation Location</th>
+        <th>Test Evidence</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td class="mono">REQ-01</td>
+        <td>Python POC using synthetic AI-generated feedback and two curriculum profiles (&sect;1)</td>
+        <td><span class="mono">src/main.py</span> pipeline; <span class="mono">data/umass_cs250.json</span>, <span class="mono">data/japan_discrete_math.json</span></td>
+        <td>Pipeline runs without error; both profiles load and validate (38 tests pass)</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-02</td>
+        <td>Pydantic input validation &#8212; invalid outputs rejected, not coerced (&sect;2 Step 1)</td>
+        <td><span class="mono">src/schemas.py</span>; <span class="mono">main.py</span> <span class="mono">load_profile()</span> / <span class="mono">load_scenarios()</span></td>
+        <td><span class="mono">test_schemas.py</span>: 14 tests covering bad enum values, missing required fields, mismatched scenario IDs, retry_count &gt; 2 all raise <span class="mono">ValidationError</span></td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-03</td>
+        <td>Alignment review against each institutional profile (&sect;2 Step 2)</td>
+        <td><span class="mono">evaluator.py</span> <span class="mono">AlignmentEngine._check_umass()</span> and <span class="mono">._check_japan()</span></td>
+        <td><span class="mono">test_evaluator.py</span>: EvaluationResult produced for all 20 (10&times;2) runs; each result has &ge;1 claim</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-04</td>
+        <td>Citation verification: every cited_id must exist in profile or scenario (&sect;2 Step 3)</td>
+        <td><span class="mono">src/critic.py</span> <span class="mono">CitationCritic.check_claims()</span></td>
+        <td><span class="mono">test_critic.py</span>: 8 tests &#8212; valid pass, invalid rejected with bad_ids list, cross-profile ID isolation verified</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-05</td>
+        <td>Up to two citation retries; unresolved &#8594; Insufficient_Information (&sect;2 Step 3)</td>
+        <td><span class="mono">evaluator.py</span> <span class="mono">AlignmentEngine.evaluate()</span> &#8212; <span class="mono">MAX_RETRIES = 2</span>; loop strips bad claims; fallback claim on exhaustion</td>
+        <td><span class="mono">test_evaluator.py::test_retry_count_in_valid_range</span>; <span class="mono">test_schemas.py</span> rejects retry_count=3; <span class="mono">all_citations_valid=True</span> in live run</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-06</td>
+        <td>Paired comparison and PairedAttributionResult (&sect;2 Step 4)</td>
+        <td><span class="mono">evaluator.py</span> <span class="mono">PairedComparisonEngine.compare()</span>; <span class="mono">schemas.py PairedAttributionResult</span></td>
+        <td><span class="mono">test_evaluator.py</span>: 10 paired results produced; attribution labels verified against expected; scenario_id mismatch rejected by <span class="mono">model_validator</span></td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-07</td>
+        <td>Results saved as JSON (PairedAttributionResult) and readable summary (&sect;2 Step 4)</td>
+        <td><span class="mono">main.py run_pipeline()</span> &#8594; <span class="mono">results/benchmark_report.json</span>, <span class="mono">results/summary.txt</span></td>
+        <td>Both files present and structurally valid; re-running pipeline regenerates identical content (deterministic)</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-08</td>
+        <td>Revised Bloom&#39;s Taxonomy used to classify curriculum baseline (&sect;1)</td>
+        <td><span class="mono">schemas.py BloomLevel</span> enum (all 6 Anderson &amp; Krathwohl levels); UMass = Analyze, Japan = Understand</td>
+        <td><span class="mono">test_schemas.py::test_loads_from_fixture</span>; invalid level &#34;Memorise&#34; rejected</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-09</td>
+        <td>Structural rules and communicative norms kept separate (&sect;1)</td>
+        <td><span class="mono">InstitutionalProfile.structural_rules</span> vs <span class="mono">.socio_communicative_norms</span> (distinct lists); evaluator logic references each separately</td>
+        <td><span class="mono">test_schemas.py::test_all_rule_ids_non_empty</span> verifies both pools populated; <span class="mono">all_rule_ids()</span> method merges both for citation validation</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-10</td>
+        <td>Three attribution labels: Consistent_With_Design_Limitation, Consistent_With_Contextual_Assumption, Insufficient_Information (&sect;1, &sect;2)</td>
+        <td><span class="mono">schemas.py AttributionLabel</span> enum; <span class="mono">PairedComparisonEngine._assign_label()</span></td>
+        <td>All three labels present in schema; label assignment logic covers all 5 input combinations; test coverage for DL and CA labels</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-11</td>
+        <td>10 synthetic scenarios, each evaluated against both profiles = 20 evaluations (&sect;3)</td>
+        <td><span class="mono">data/scenarios.json</span> (10 items EE_S01&#8211;EE_S10); <span class="mono">main.py</span> iterates 10 &times; 2 = 20 runs</td>
+        <td><span class="mono">test_schemas.py::test_all_scenarios_load</span> asserts len == 10; N=20 confirmed in benchmark report</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-12</td>
+        <td>All scenarios anchored to COMPSCI 250 EE regular expression problem (&sect;3)</td>
+        <td>All 10 scenarios in <span class="mono">scenarios.json</span> use EE-domain student attempts and feedback; correct constructions hardcoded in evaluator</td>
+        <td>Scenario IDs follow EE_S&lt;n&gt; convention; student_attempt strings are EE-language expressions throughout</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-13</td>
+        <td>Expected labels predefined before evaluation (&sect;3, &sect;4)</td>
+        <td><span class="mono">FeedbackScenario.expected_umass_alignment</span>, <span class="mono">.expected_japan_alignment</span>, <span class="mono">.expected_attribution</span> in <span class="mono">scenarios.json</span></td>
+        <td>Labels exist in fixture file, not derived from results; <span class="mono">score_single_profile()</span> compares post-run result against fixture label independently</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-14</td>
+        <td>Negative control verification &#8212; benchmark must include cases where profiles should not differ (&sect;4)</td>
+        <td><span class="mono">FeedbackScenario.is_negative_control</span> flag; 5 of 10 scenarios flagged true (EE_S01, S02, S06, S08, S09)</td>
+        <td><span class="mono">test_evaluator.py::test_negative_controls_no_cross_profile_difference</span>; negative_control_summary in report shows 5/5 correct</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-15</td>
+        <td>Single-profile accuracy N=20, target &ge;80% (16/20) (&sect;4)</td>
+        <td><span class="mono">main.py score_single_profile()</span>; <span class="mono">BenchmarkReport.single_profile_accuracy</span>; threshold check <span class="mono">sp_correct &gt;= 16</span></td>
+        <td><span class="mono">test_evaluator.py::test_single_profile_accuracy_meets_80_percent</span>; live result 20/20 = 100%</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-16</td>
+        <td>Paired attribution accuracy N=10, target &ge;80% (8/10) (&sect;4)</td>
+        <td><span class="mono">main.py score_paired_attribution()</span>; <span class="mono">BenchmarkReport.paired_attribution_accuracy</span>; threshold check <span class="mono">pa_correct &gt;= 8</span></td>
+        <td><span class="mono">test_evaluator.py::test_paired_attribution_accuracy_meets_80_percent</span>; live result 10/10 = 100%</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-17</td>
+        <td>At least one cross-profile difference demonstrated (&sect;4)</td>
+        <td><span class="mono">main.py has_cross_profile_difference()</span>; <span class="mono">BenchmarkReport.cross_profile_difference_found</span></td>
+        <td><span class="mono">test_evaluator.py::test_cross_profile_difference_exists</span>; 5 scenarios (S03,S04,S05,S07,S10) show cross-profile difference</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-18</td>
+        <td>Error analysis documented (&sect;4)</td>
+        <td><span class="mono">main.py format_summary()</span> ERROR ANALYSIS section; <span class="mono">BenchmarkReport</span> fields for all boolean acceptance criteria</td>
+        <td>summary.txt shows &#34;none&#34; for all three error categories &#8212; consistent with 100% accuracy run</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-19</td>
+        <td>Reproducibility &#8212; fixtures, expected labels, results, reports retained (&sect;4)</td>
+        <td>All fixture JSON files committed to repository; results/ committed; pipeline is fully deterministic (no LLM/API calls)</td>
+        <td>Pipeline re-run produces identical benchmark_report.json; 38 tests pass on fresh execution</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+      <tr>
+        <td class="mono">REQ-20</td>
+        <td>Human review scope &#8212; no unreviewed feedback sent to learners; no live LMS data (&sect;1)</td>
+        <td>No external API calls anywhere in codebase; no network imports; all data is synthetic JSON</td>
+        <td>Code inspection confirms: zero HTTP/network calls; <span class="mono">README.md</span> Ethical Boundaries section explicitly states constraints</td>
+        <td class="s-pass">PASS</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- ======================== SECTION 2 ======================== -->
+  <h2>2. Architecture Review</h2>
+
+  <div class="finding pass">
+    <strong>Four-step pipeline &#8212; fully implemented and sequenced correctly</strong>
+    The charter (&sect;2) specifies: (1) Pydantic validation &#8594; (2) alignment review &#8594; (3) citation check with &le;2 retries &#8594; (4) paired comparison + report. The implementation maps exactly: Step 1 in <span class="mono">schemas.py</span> + loaders in <span class="mono">main.py</span>; Step 2 in <span class="mono">evaluator.py AlignmentEngine._build_claims()</span>; Step 3 in <span class="mono">critic.py CitationCritic</span> called from <span class="mono">AlignmentEngine.evaluate()</span>; Step 4 in <span class="mono">PairedComparisonEngine.compare()</span>. The pipeline runs in this exact order.
+  </div>
+
+  <div class="finding pass">
+    <strong>Schema models match the data dictionary exactly</strong>
+    All 7 models from the charter data dictionary (RuleItem, InstitutionalProfile, FeedbackScenario, DiagnosticClaim, EvaluationResult, PairedAttributionResult, BenchmarkReport) are present in <span class="mono">schemas.py</span>. Field names, types, and enum values match the specification precisely. BenchmarkReport is an additional top-level model not explicitly named in the data dictionary table, but its fields correspond directly to all acceptance criteria metrics &#8212; a sound design decision.
+  </div>
+
+  <div class="finding pass">
+    <strong>Structural rules and communicative norms correctly separated</strong>
+    The spec requires (&sect;1) keeping prerequisites/proof requirements separate from communication preferences. InstitutionalProfile holds two distinct lists. The evaluator&#39;s UMass logic operates primarily on structural rules (SR-prefixed), and Japan&#39;s communicative norms (SCN-prefixed) are defined but their rule_ids are available for citation without being directly tested in the alignment engine logic &#8212; consistent with the spec&#39;s intent to flag them as hypothetical preferences, not evaluated requirements.
+  </div>
+
+  <div class="finding warn">
+    <strong>DEVIATION: Communicative norms (SCN rules) are not directly tested in alignment logic</strong>
+    The Japan profile defines three SCN rules (japan_SCN01&#8211;SCN03). The alignment engine never fires a claim citing an SCN rule_id &#8212; claims cite SR and CLO rules only. This means SCN rules exist in the valid_id pool for citation purposes but are architecturally inactive. This is consistent with the spec&#39;s own caveat that socio-communicative norms are &#34;hypothetical preferences,&#34; but the boundary is implicit rather than explicit. No compliance failure.
+  </div>
+
+  <!-- ======================== SECTION 3 ======================== -->
+  <h2>3. Synthetic Data Review</h2>
+
+  <div class="finding pass">
+    <strong>All 10 scenarios correctly anchor to the EE problem domain</strong>
+    Every <span class="mono">student_attempt</span> is a syntactically valid regular expression over {a,b}. Five scenarios use provably correct constructions; five use incorrect or incomplete ones. The evaluator hardcodes three canonical correct constructions and uses exact-match (not substring) comparison &#8212; an important correctness choice documented with an inline comment explaining the substring false-positive risk.
+  </div>
+
+  <div class="finding pass">
+    <strong>Ground-truth labels are internally consistent and independently defensible</strong>
+    All 10 scenarios&#39; expected labels were reviewed against their feedback text and profile rules. All 10 are consistent: the five negative controls (S01, S02, S06, S08, S09) correctly expect identical alignment outcomes across profiles; the five cross-profile scenarios (S03, S04, S05, S07, S10) correctly expect divergent outcomes driven by documented curriculum differences (DFA scope, proof requirement).
+  </div>
+
+  <div class="finding pass">
+    <strong>Institutional profiles are well-structured and internally consistent</strong>
+    UMass profile: 10 structural rules (SR01&#8211;SR07, CLO01&#8211;CLO03) + 3 SCN rules = 13 total rule_ids. Japan profile: 9 structural rules (SR01&#8211;SR06, CLO01&#8211;CLO03) + 3 SCN rules = 12 total rule_ids. Rule texts are coherent and differentiated. UMass bloom_baseline = Analyze; Japan = Understand &#8212; appropriate given UMass requires proof construction (higher-order) versus Japan&#39;s pattern verification (lower-order).
+  </div>
+
+  <div class="finding pass">
+    <strong>Fictional nature of Japan profile clearly disclosed</strong>
+    <span class="mono">institution_name</span> includes &#34;(Synthetic Profile, Fictional)&#34;. The charter (&sect;3), README Ethical Boundaries, and scenario _notes all state the Japan profile does not represent any actual institution.
+  </div>
+
+  <div class="finding warn">
+    <strong>LIMITATION: Correct construction whitelist is a closed set</strong>
+    The evaluator recognizes exactly three correct EE constructions. Any algebraically equivalent but syntactically different expression would be treated as incorrect. This is an appropriate and known constraint for a POC with synthetic data, but limits generalizability to open-ended student submissions.
+  </div>
+
+  <!-- ======================== SECTION 4 ======================== -->
+  <h2>4. Citation Verification Review</h2>
+
+  <div class="finding pass">
+    <strong>CitationCritic implements the two-retry requirement correctly</strong>
+    The charter (&sect;2 Step 3) requires: verify &#8594; retry up to two times &#8594; Insufficient_Information if unresolved. The implementation uses <span class="mono">MAX_RETRIES = 2</span> and a loop spanning <span class="mono">range(MAX_RETRIES + 1)</span> = 3 attempts (0, 1, 2). After the loop, a final check determines whether to downgrade. The retry mechanism strips bad claims rather than regenerating new ones &#8212; deterministically safe and auditable.
+  </div>
+
+  <div class="finding pass">
+    <strong>Citation pool is correctly scoped per (profile, scenario) pair</strong>
+    Each CitationCritic instance is constructed fresh per evaluation, binding the valid_id pool to the specific profile and scenario. UMass rule_ids are not valid under the Japan pool (confirmed by test). The scenario_id is always a valid citation target.
+  </div>
+
+  <div class="finding pass">
+    <strong>All 20 evaluations pass citation verification with zero retries</strong>
+    The benchmark report confirms <span class="mono">all_citations_valid: true</span> and all retry_count values are 0. This is consistent with a deterministic evaluator whose claims are hand-authored with valid rule_ids &#8212; there is no random or LLM-generated claim text that could introduce invalid citations. The retry mechanism is exercised in unit tests but not triggered in production.
+  </div>
+
+  <div class="finding warn">
+    <strong>LIMITATION: Retry path is not exercised by any integration test against the full benchmark</strong>
+    The retry mechanism is tested in isolation (unit tests create claims with invalid IDs manually). No integration test injects an initially-invalid claim into the evaluator to exercise the retry + downgrade path end-to-end. This is not a compliance failure, but it is a coverage gap that matters if the evaluator is extended to use generated (non-deterministic) claim text.
+  </div>
+
+  <!-- ======================== SECTION 5 ======================== -->
+  <h2>5. Benchmark Integrity Review</h2>
+
+  <h3>N=20 Single-Profile Accuracy</h3>
+
+  <table>
+    <thead>
+      <tr><th>Scenario</th><th>UMass Expected</th><th>UMass Got</th><th>Japan Expected</th><th>Japan Got</th><th>Match</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">EE_S01</td><td>Misaligned</td><td>Misaligned</td><td>Misaligned</td><td>Misaligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S02</td><td>Aligned</td><td>Aligned</td><td>Aligned</td><td>Aligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S03</td><td>Aligned</td><td>Aligned</td><td>Misaligned</td><td>Misaligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S04</td><td>Misaligned</td><td>Misaligned</td><td>Aligned</td><td>Aligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S05</td><td>Aligned</td><td>Aligned</td><td>Misaligned</td><td>Misaligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S06</td><td>Misaligned</td><td>Misaligned</td><td>Misaligned</td><td>Misaligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S07</td><td>Aligned</td><td>Aligned</td><td>Misaligned</td><td>Misaligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S08</td><td>Aligned</td><td>Aligned</td><td>Aligned</td><td>Aligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S09</td><td>Aligned</td><td>Aligned</td><td>Aligned</td><td>Aligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+      <tr><td class="mono">EE_S10</td><td>Misaligned</td><td>Misaligned</td><td>Aligned</td><td>Aligned</td><td class="s-pass">2/2 &#10003;</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Result: 20/20 = 100.0% &#8212; target &ge;80% (16/20) &#8212; PASS</strong></p>
+
+  <h3>N=10 Paired Attribution Accuracy</h3>
+
+  <table>
+    <thead>
+      <tr><th>Scenario</th><th>Expected Attribution</th><th>Got Attribution</th><th>Neg Ctrl</th><th>Match</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">EE_S01</td><td>Consistent_With_Design_Limitation</td><td>Consistent_With_Design_Limitation</td><td>Yes</td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S02</td><td>Consistent_With_Design_Limitation</td><td>Consistent_With_Design_Limitation</td><td>Yes</td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S03</td><td>Consistent_With_Contextual_Assumption</td><td>Consistent_With_Contextual_Assumption</td><td></td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S04</td><td>Consistent_With_Contextual_Assumption</td><td>Consistent_With_Contextual_Assumption</td><td></td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S05</td><td>Consistent_With_Contextual_Assumption</td><td>Consistent_With_Contextual_Assumption</td><td></td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S06</td><td>Consistent_With_Design_Limitation</td><td>Consistent_With_Design_Limitation</td><td>Yes</td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S07</td><td>Consistent_With_Contextual_Assumption</td><td>Consistent_With_Contextual_Assumption</td><td></td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S08</td><td>Consistent_With_Design_Limitation</td><td>Consistent_With_Design_Limitation</td><td>Yes</td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S09</td><td>Consistent_With_Design_Limitation</td><td>Consistent_With_Design_Limitation</td><td>Yes</td><td class="s-pass">&#10003;</td></tr>
+      <tr><td class="mono">EE_S10</td><td>Consistent_With_Contextual_Assumption</td><td>Consistent_With_Contextual_Assumption</td><td></td><td class="s-pass">&#10003;</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Result: 10/10 = 100.0% &#8212; target &ge;80% (8/10) &#8212; PASS</strong></p>
+
+  <div class="finding pass">
+    <strong>Scoring methods are correctly implemented and independently evaluated</strong>
+    <span class="mono">score_single_profile()</span> iterates over paired_results and increments both a UMass counter and a Japan counter per scenario &#8212; correctly producing N=20 from 10 scenarios. <span class="mono">score_paired_attribution()</span> counts one per paired result &#8212; correctly producing N=10. Both methods look up ground-truth from the scenario fixture, not from the result itself, ensuring independence.
+  </div>
+
+  <div class="finding warn">
+    <strong>NOTE: EE_S01 UMass misalignment &#8212; correct label, secondary diagnostic claim</strong>
+    EE_S01 has a correct student answer but feedback that says &#34;Your regular expression is incorrect.&#34; The expected label is Misaligned (correct). The Japan evaluator fires rule J-0 (incorrect rejection of a correct answer &#8212; factual error framing). The UMass evaluator produces a U-B claim (&#34;confirms correctness without proof justification&#34;) rather than a factual-error framing, because the feedback text contains the word &#34;correct&#34; (in &#34;The correct answer is&#8230;&#34;) which satisfies the confirmatory pattern before the factual-error path is reached. The benchmark label is correct; the diagnostic claim characterizes a secondary issue rather than the primary factual error.
+  </div>
+
+  <!-- ======================== SECTION 6 ======================== -->
+  <h2>6. Research Validity Review</h2>
+
+  <div class="finding pass">
+    <strong>Non-causal framing is consistently maintained</strong>
+    The spec requires labels to be &#34;possible explanations, not confirmed causes.&#34; All three attribution labels use the &#34;Consistent_With_&#34; prefix. The <span class="mono">paired_rationale</span> texts explicitly state &#34;this is a possible explanation, not a confirmed cause.&#34; The charter&#39;s &sect;4 &#34;Limits of interpretation&#34; note is implemented as schema documentation.
+  </div>
+
+  <div class="finding pass">
+    <strong>Human review scope is enforced by design</strong>
+    Insufficient_Information outcomes are flagged in the benchmark report with an ERROR ANALYSIS section. The system produces no automated student-facing outputs. The pipeline terminates at a JSON file and a text summary, both of which require human review to act on.
+  </div>
+
+  <div class="finding warn">
+    <strong>LIMITATION: 100% accuracy on a self-consistent, deterministic benchmark has bounded external validity</strong>
+    The expected labels in <span class="mono">scenarios.json</span> were authored by the same researcher who authored the alignment logic in <span class="mono">evaluator.py</span>. The evaluator is deterministic and the scenarios are purpose-built for it. 100% accuracy is therefore expected by construction, not evidence of generalization. The charter correctly frames this as a &#34;litmus test&#8230;to determine whether this approach merits further investigation&#34; &#8212; consistent with a proof-of-concept scope. This limitation should be clearly stated when reporting results externally.
+  </div>
+
+  <div class="finding info">
+    <strong>ASSUMPTION: Bloom&#39;s Taxonomy baseline level is recorded but not operationalized in scoring</strong>
+    Both profiles carry a <span class="mono">bloom_baseline_level</span> field (UMass = Analyze, Japan = Understand). The charter describes using it as &#34;a starting point for classifying curriculum expectations.&#34; In the implementation, this field is validated and stored but is not used by any alignment logic or scoring function. It serves as metadata for human interpretation &#8212; consistent with the charter&#39;s framing that the POC &#34;tests whether Revised Bloom&#39;s Taxonomy is useful for this evaluation.&#34;
+  </div>
+
+  <!-- ======================== SECTION 7 ======================== -->
+  <h2>7. Reproducibility Review</h2>
+
+  <div class="finding pass">
+    <strong>Fresh installation confirmed reproducible</strong>
+    Dependencies: Python 3.10+ (tested on 3.13.1), pydantic, pytest. No external API keys, no network calls, no database, no randomness. <span class="mono">python src/main.py</span> runs without error and produces results identical to the committed <span class="mono">benchmark_report.json</span>. <span class="mono">python -m pytest tests/ -v</span> runs 38 tests, all pass, in 0.11s.
+  </div>
+
+  <div class="finding pass">
+    <strong>All fixtures committed to repository</strong>
+    <span class="mono">data/</span>, <span class="mono">src/</span>, <span class="mono">tests/</span>, <span class="mono">results/</span>, and <span class="mono">docs/</span> are all committed. No required file is in <span class="mono">.gitignore</span>.
+  </div>
+
+  <div class="finding pass">
+    <strong>Windows Unicode handling explicitly addressed</strong>
+    <span class="mono">main.py</span> reconfigures stdout/stderr to UTF-8 with error replacement on Windows. This prevents encoding failures when printing Unicode summary characters on Windows terminals &#8212; a practical reproducibility concern for the target platform.
+  </div>
+
+  <div class="finding warn">
+    <strong>Minor gap: No requirements.txt or pyproject.toml</strong>
+    The README documents the two dependencies (<span class="mono">pip install pydantic pytest</span>). A <span class="mono">requirements.txt</span> or <span class="mono">pyproject.toml</span> would formalize this for independent reproducibility. The absence does not block installation but is a documentation gap for external reviewers.
+  </div>
+
+  <!-- ======================== SECTION 8 ======================== -->
+  <h2>8. Summary of Findings</h2>
+
+  <table>
+    <thead>
+      <tr><th>#</th><th>Category</th><th>Finding</th><th>Severity</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>F-01</td>
+        <td>Architecture</td>
+        <td>SCN (socio-communicative norm) rules are present in both profiles and in the citation-valid pool, but no alignment logic fires a claim citing an SCN rule_id. The separation is correct by design but the boundary is implicit.</td>
+        <td class="s-warn">Note</td>
+      </tr>
+      <tr>
+        <td>F-02</td>
+        <td>Citation verification</td>
+        <td>The retry + downgrade path is verified only by unit tests that manually inject invalid claims. No end-to-end integration test exercises this path through the full evaluator pipeline.</td>
+        <td class="s-warn">Minor gap</td>
+      </tr>
+      <tr>
+        <td>F-03</td>
+        <td>Synthetic data</td>
+        <td>The correct-expression whitelist contains exactly three constructions. Any algebraically equivalent but syntactically distinct correct answer would be misclassified as incorrect by the evaluator.</td>
+        <td class="s-warn">Known scope limit</td>
+      </tr>
+      <tr>
+        <td>F-04</td>
+        <td>Research validity</td>
+        <td>100% accuracy is expected by construction (deterministic evaluator, author-designed scenarios). External validity beyond this closed benchmark is unproven &#8212; correctly acknowledged in the charter as a &#34;litmus test&#34; only.</td>
+        <td class="s-warn">Disclosed limitation</td>
+      </tr>
+      <tr>
+        <td>F-05</td>
+        <td>EE_S01 UMass claim</td>
+        <td>The UMass Misaligned verdict on EE_S01 is correct (expected Misaligned, got Misaligned), but the diagnostic claim cites the U-B &#34;no proof justification&#34; rule rather than a &#34;factual error in AI feedback&#34; framing. The label is correct; the claim text characterizes a secondary issue.</td>
+        <td class="s-warn">Minor diagnostic precision gap</td>
+      </tr>
+      <tr>
+        <td>F-06</td>
+        <td>Reproducibility</td>
+        <td>No <span class="mono">requirements.txt</span> or <span class="mono">pyproject.toml</span>. Installation instructions exist only in README prose. Does not block use but is non-standard for open sharing.</td>
+        <td class="s-warn">Minor documentation gap</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Acceptance Criteria Summary</h3>
+  <table>
+    <thead>
+      <tr><th>Criterion</th><th>Target</th><th>Result</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Schema checks (Pydantic)</td><td>All pass</td><td>All pass &#8212; 20/20 runs validated</td><td class="s-pass">PASS</td></tr>
+      <tr><td>Citation checks</td><td>All valid</td><td>all_citations_valid = true; 0 retries</td><td class="s-pass">PASS</td></tr>
+      <tr><td>Cross-profile difference</td><td>At least 1</td><td>5 scenarios show cross-profile difference</td><td class="s-pass">PASS</td></tr>
+      <tr><td>Single-profile accuracy (N=20)</td><td>&ge;80% (16/20)</td><td>100% (20/20)</td><td class="s-pass">PASS</td></tr>
+      <tr><td>Paired attribution accuracy (N=10)</td><td>&ge;80% (8/10)</td><td>100% (10/10)</td><td class="s-pass">PASS</td></tr>
+      <tr><td>Negative controls (N=5)</td><td>No cross-profile diff</td><td>5/5 correct, no unexpected diffs</td><td class="s-pass">PASS</td></tr>
+      <tr><td>Reproducibility</td><td>Results repeatable</td><td>38/38 tests pass; pipeline deterministic</td><td class="s-pass">PASS</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>All 20 chartered requirements are met. All 7 acceptance criteria pass. The POC is internally sound, fully reproducible, and correctly scoped as a research proof of concept.</strong></p>
+
+  <hr class="divider">
+
+  <footer>Made with IBM Bob</footer>
+</div>
+</body>
+</html>
