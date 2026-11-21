@@ -2,7 +2,21 @@
 
 Agentic AI proof of concept (POC) developed using IBM Bob to evaluate AI generated educational feedback against different curriculum expectations. Using 10 synthetic scenarios and two curriculum profiles, the POC examines whether feedback supports learning, identifies possible gaps in system design, and provides evidence for human review.
 
-## Overview
+## Research Overview
+
+Education prepares students for the future. As AI becomes part of teaching and learning, students and educators increasingly rely on AI generated feedback. But what happens when that feedback does not match what students are taught?
+
+A learning gap may reflect missing knowledge or skills. A learning lapse may reflect a temporary breakdown in understanding. However, the problem may also come from the AI system itself.
+
+These challenges affect more than students. Educators need feedback that supports their teaching goals. Institutions need systems that reflect their curriculum expectations. Researchers and developers need ways to identify where AI systems fall short.
+
+This proof of concept (POC) examines these challenges through synthetic scenarios and different curriculum expectations. It focuses on identifying possible gaps between AI generated feedback and what students are expected to learn.
+
+**Core Research Question**
+
+When an AI learning system fails a learner, are we questioning the learner or questioning the system?
+
+## Technical Overview
 
 The evaluator takes AI-generated feedback on the COMPSCI 250 "even-even" (EE) regular expression problem and checks whether that feedback aligns with the expectations of two synthetic institutional profiles:
 
@@ -18,6 +32,70 @@ Each feedback scenario is evaluated against both profiles, and the two results a
 | `Insufficient_Information` | Evidence is insufficient; flagged for human review |
 
 > **Important**: These labels describe possible explanations, not confirmed causes.
+
+## Experimental Framework
+
+This POC examines how AI generated educational feedback aligns with different curriculum expectations. It uses synthetic data to test the system without collecting student information.
+
+The evaluation includes:
+
+- **10 synthetic scenarios:** Examples of AI generated feedback used for testing.
+- **Two curriculum profiles:** Different institutional expectations used to evaluate the same feedback.
+- **20 institutional evaluations:** Each scenario is evaluated against both curriculum profiles.
+- **10 paired comparisons:** Results are compared to identify differences in feedback alignment.
+- **Evidence verification:** The system checks whether its findings are supported by the curriculum profiles.
+
+The POC uses an 80% accuracy target for its evaluation measures. The results help identify where AI feedback aligns with curriculum expectations and where differences may occur.
+
+The experiments provide a starting point for further research. They do not measure actual student learning outcomes.
+
+
+## System Architecture
+
+The POC uses an Agentic AI framework to evaluate educational feedback against different curriculum expectations.
+
+The system includes:
+
+- **Input Data:** Synthetic scenarios and two curriculum profiles.
+- **Data Validation:** Checks that the information follows the required format.
+- **Feedback Evaluator:** Examines how AI generated feedback aligns with each curriculum.
+- **Evidence Checker:** Checks whether the evaluation is supported by the curriculum information.
+- **Paired Comparison:** Compares results across the two curriculum profiles.
+- **Evaluation Results:** Records findings for human review.
+
+### Architecture Diagram
+
+The diagram below shows how the different parts of the system work together.
+
+See the [Code Architecture](docs/architecture.md) document for the architecture diagram and a description of each component.
+
+### Data Dictionary
+
+The [Data Dictionary](docs/data_dictionary.md) explains the information used by the system. It includes field definitions, data types, and validation rules.
+
+IBM Bob supports the development and testing of the system based on this framework.
+
+
+## IBM Bob Development and Support
+
+This POC is developed through the IBM SkillsBuild AI Experiential Learning Lab using IBM Bob as the primary AI development tool.
+
+IBM Bob supports the project through its software development capabilities:
+
+- **Plan Mode:** Helps organize the system design and development steps.
+- **Agent Mode:** Supports Python code generation, testing, and debugging.
+- **Ask Mode:** Helps explain code and answer technical questions.
+- **Documentation:** Supports the development of clear technical documents.
+- **Code Review:** Helps identify errors and improve the implementation.
+
+### IBM Bob's Value
+
+IBM Bob helps turn the research framework into a working POC. It supports the development of the curriculum alignment evaluator while allowing the researcher to focus on the research questions, evaluation methods, and findings.
+
+The IBM SkillsBuild AI Experiential Learning Lab provides an opportunity to apply AI development tools to a real research problem. This project demonstrates how IBM Bob supports research, software development, and practical solutions to challenges in education.
+
+For more information, see the [IBM Bob IDE Documentation](https://bob.ibm.com/docs/ide).
+
 
 ## Quickstart
 
