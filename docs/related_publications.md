@@ -5,7 +5,7 @@ The following publications inform the research background and methodology of thi
 ## Project Reference
 
 **Randall, A. K. C. (2026).**  
-*AI Experiential Learning Lab US Fall 2026: Mid-Program Milestone Checkpoint (Team: Intelligent Tutors R Us).*  
+*AI Experiential Learning Lab US Fall 2026: Mid-Program Milestone Checkpoint (Team: Intelligent Tutors R Us)](docs/IBM_SkillsBuild_Sprint_POC.pdf).*  
 IBM SkillsBuild AI Experiential Learning Lab.
 
 This milestone established the research direction preceding the Sprint One POC.
