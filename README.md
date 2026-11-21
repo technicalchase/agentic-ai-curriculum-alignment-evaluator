@@ -96,6 +96,30 @@ The IBM SkillsBuild AI Experiential Learning Lab provides an opportunity to appl
 
 For more information, see the [IBM Bob IDE Documentation](https://bob.ibm.com/docs/ide).
 
+## Related Publications
+
+This POC builds on my previous research in AI in Education, adaptive feedback, software engineering, and responsible AI.
+
+My six peer reviewed publications provide background for the research framework. Each examines a challenge that helps explain why we need to evaluate AI systems and not just their users.
+
+The publications address:
+
+- **Scholarly Literature:** Researchers need reliable ways to find and review existing knowledge. AI tools may miss important context or overlook different perspectives. This POC examines a similar problem when AI feedback overlooks curriculum expectations.
+
+- **Neural Networks:** Neural networks can make decisions without clearly explaining why. This makes it difficult to identify errors or understand system behavior. The POC examines similar challenges when AI generated feedback does not match curriculum expectations.
+
+- **Neuro-evolution and Robustness:** An AI system may perform well in one setting but struggle when conditions change. This raises questions about system reliability. The POC examines whether the same feedback remains appropriate across different curriculum expectations.
+
+- **Privacy, Fairness, and Utility:** Improving one part of an AI system may create problems elsewhere. These tradeoffs raise questions about whose needs the system serves. The POC examines how curriculum differences may affect the fairness and usefulness of AI feedback.
+
+- **Adaptive Feedback and Student Engagement:** Feedback that does not reflect a student's learning needs may create confusion or reduce engagement. The POC examines whether AI generated feedback supports what students are expected to learn.
+ 
+- **AI in Education and Automata Theory:** AI learning systems may follow rules and assumptions that do not reflect how students are taught. This raises questions about whether a learning gap comes from the student or the system. My synthesis paper brings AI in Education and Automata Theory together to examine these challenges. The paper supported my Ph.D. candidacy application. Professors Beverly Woolf and David A. Mix Barrington served as readers and later joined my dissertation committee. This POC extends that research by examining AI generated feedback across different curriculum expectations.
+
+See [Related Publications](docs/related_publications.md) for publication titles, references, and links.
+
+Together, these publications help connect the POC to my broader research and dissertation. They raise a common question: When an AI system falls short, are we examining the limitations of the system or placing the burden on the user?
+
 
 ## Quickstart
 
