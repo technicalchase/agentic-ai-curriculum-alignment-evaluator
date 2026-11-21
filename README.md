@@ -217,6 +217,44 @@ The four-step pipeline (Technical Charter, Section 2):
 - The system does not grade students or send feedback to learners.
 - Results are for researcher review only.
 
-## Citation
 
-Randall, A. K. C. (2026). *Sprint One POC Technical Charter: Agentic AI Curriculum Alignment Evaluator*. IBM SkillsBuild AI Experiential Learning Lab.
+## Generative AI Use Disclosure
+
+Generative AI tools were used to support research documentation, editing, formatting, and software development.
+
+**IBM Bob** serves as the primary AI development environment for this POC through the IBM SkillsBuild AI Experiential Learning Lab.  IBM Bob supports system planning, Python code development, testing, debugging, and documentation. Its Plan, Agent, and Ask modes support the development process.
+
+The researcher developed the theoretical argument, framework design, source selection, and substantive analysis. The researcher takes full responsibility for the research design, evaluation, findings, and content of this project.  No generative AI output is used as scientific evidence.
+
+### IBM SkillsBuild Support
+
+The IBM SkillsBuild AI Experiential Learning Lab provides access to IBM Bob and a structured opportunity to develop and evaluate this POC.
+
+This support connects doctoral research with practical software development. It helps examine how Agentic AI can identify differences between AI generated educational feedback and curriculum expectations.
+
+
+## Author and Acknowledgments
+
+### Author
+
+**Andre Kenneth "Chase" Randall**  
+Ph.D. Candidate, Computer Science  
+Manning College of Information and Computer Sciences  
+University of Massachusetts Amherst
+
+**Research Interests:** AI in Education, Intelligent Tutoring Systems (ITS), automata theory, machine learning, software engineering, and human computer interaction (HCI).
+
+### Research Profiles
+
+- **ORCID:** [Researcher Profile](INSERT_ORCID_URL)
+- **Google Scholar:** [Publications and Citations](https://scholar.google.com/citations?user=JCRyybgAAAAJ&hl=en)
+- **GitHub:** [@technicalchase](https://github.com/technicalchase)
+
+
+### Acknowledgments
+
+I acknowledge **IBM** and the **IBM SkillsBuild AI Experiential Learning Lab** for providing access to IBM Bob and supporting the development of this POC.  Also, I acknowledge support from Kayleen Helms, PhD, the Spaulding Smith Fellowship funded by the UMass Graduate School, the National GEM Consortium, and the Intel Scholars Program.  Special thanks to **IBM SkillsBuild team** for their guidance and technical support during the development of this POC.
+
+The opinions, findings, conclusions, and recommendations expressed in this project reflect my research and do not necessarily represent the views of the supporting organizations.
+
+
