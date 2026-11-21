@@ -1,0 +1,8 @@
+# Sprint One POC — Python dependencies
+#
+# External packages only. Standard library modules (re, json, pathlib, sys,
+# io, typing, enum) are omitted. No LLM client is required; all evaluation
+# logic is deterministic and rule-based.
+
+pydantic>=2.14,<3
+pytest>=9.2,<10
