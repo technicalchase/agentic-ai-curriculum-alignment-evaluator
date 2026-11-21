@@ -49,6 +49,14 @@ This will:
 python -m pytest tests/ -v
 ```
 
+## Demo
+
+See [`demo/README.md`](demo/README.md) for a step-by-step walkthrough that covers:
+
+- How to run the pipeline and the test suite
+- What the two curriculum profiles represent and how they differ
+- How to interpret the three attribution labels and the per-scenario results
+
 ## Project Structure
 
 ```
@@ -60,15 +68,17 @@ python -m pytest tests/ -v
 │   ├── schemas.py                # Pydantic data models (InstitutionalProfile, FeedbackScenario, etc.)
 │   ├── critic.py                 # Deterministic citation verifier (CitationCritic)
 │   ├── evaluator.py              # Alignment engine + paired comparison engine
-│   └── main.py                  # Pipeline runner (Steps 1–4)
+│   └── main.py                   # Pipeline runner (Steps 1–4)
 ├── tests/
 │   ├── conftest.py               # Shared pytest fixtures
 │   ├── test_schemas.py           # Schema validation tests
 │   ├── test_critic.py            # Citation verification tests
-│   └── test_evaluator.py        # Alignment and benchmark accuracy tests
+│   └── test_evaluator.py         # Alignment and benchmark accuracy tests
 ├── results/
 │   ├── benchmark_report.json     # Full structured results (Pydantic JSON)
-│   └── summary.txt              # Human-readable evaluation report
+│   └── summary.txt               # Human-readable evaluation report
+├── demo/
+│   └── README.md                 # Step-by-step demo walkthrough
 └── docs/
     ├── architecture.md
     ├── data_dictionary.md
