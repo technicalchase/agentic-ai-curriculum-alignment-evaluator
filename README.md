@@ -246,7 +246,7 @@ University of Massachusetts Amherst
 
 ### Research Profiles
 
-- **ORCID:** [Researcher Profile](INSERT_ORCID_URL)
+- **ORCID:** [Researcher Profile](https://orcid.org/0000-0002-3971-3775)
 - **Google Scholar:** [Publications and Citations](https://scholar.google.com/citations?user=JCRyybgAAAAJ&hl=en)
 - **GitHub:** [@technicalchase](https://github.com/technicalchase)
 
