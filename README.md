@@ -121,6 +121,16 @@ See [Related Publications](docs/related_publications.md) for publication titles,
 Together, these publications help connect the POC to my broader research and dissertation. They raise a common question: When an AI system falls short, are we examining the limitations of the system or placing the burden on the user?
 
 
+## Program Milestone Checkpoint
+
+This project originated from the **IBM AI Experiential Learning Lab US Fall 2026 Mid-Program Milestone Checkpoint**, submitted as the formal program entry point before Sprint One development began.
+
+The checkpoint document defines the original industry challenge, the preliminary project idea, the value proposition, and the AI-use justification that guided the design and implementation of this POC.
+
+> **Historical artifact:** [`docs/IBM_MidProgram_CheckPoint_Sumary.pdf`](docs/IBM_MidProgram_CheckPoint_Sumary.pdf)
+
+For a detailed account of how the checkpoint's research problem, proposed solution, and value proposition informed the PoC's design and implementation, see [`docs/poc_design_rationale.md`](docs/poc_design_rationale.md).
+
 ## Quickstart
 
 ### Prerequisites
@@ -184,7 +194,9 @@ See [`demo/README.md`](demo/README.md) for a step-by-step walkthrough that cover
 └── docs/
     ├── architecture.md
     ├── data_dictionary.md
+    ├── IBM_MidProgram_CheckPoint_Sumary.pdf  # Historical artifact: mid-program milestone checkpoint
     ├── methodology.md
+    ├── poc_design_rationale.md              # How the checkpoint informed the PoC design
     ├── problem_solution.md
     ├── related_publications.md
     └── technology_statement.md
