@@ -265,7 +265,9 @@ University of Massachusetts Amherst
 
 ### Acknowledgments
 
-I acknowledge **IBM** and the **IBM SkillsBuild AI Experiential Learning Lab** for providing access to IBM Bob and supporting the development of this POC.  Also, I acknowledge support from Kayleen Helms, PhD, the Spaulding Smith Fellowship funded by the UMass Graduate School, the National GEM Consortium, and the Intel Scholars Program.  Special thanks to **IBM SkillsBuild team** for their guidance and technical support during the development of this POC.
+I acknowledge **IBM** and the **IBM SkillsBuild AI Experiential Learning Lab** for providing access to IBM Bob and supporting the development of this POC.  Also, I acknowledge support from Kayleen Helms, PhD, the [Spaulding Smith Fellowship](https://www.umass.edu/graduate/office-inclusion-engagement/spaulding-smith-fellowship) funded by the UMass Graduate School, the [National GEM Consortium](https://www.gemfellowship.org/gem-fellowship-program/), and the Intel Scholars Program.  Special thanks to **IBM SkillsBuild team** for their guidance and technical support during the development of this POC and to the **UMass Amherst Graduate School** for the **$10,000 research stipend** to conduct international fieldwork.  
+
+I am a **Fulbright U.S. Student Fellow (2027)** conducting research in Vietnam. Fulbright funding supports the Vietnam portion of my broader research. No Fulbright funding supports this POC.
 
 The opinions, findings, conclusions, and recommendations expressed in this project reflect my research and do not necessarily represent the views of the supporting organizations.
 
